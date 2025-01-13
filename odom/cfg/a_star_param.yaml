@@ -1,0 +1,20 @@
+GlobalPlanner:
+  use_dijkstra: false          # Đặt thành false để sử dụng A* thay vì Dijkstra
+  allow_unknown: False          # Cho phép đi qua vùng không xác định (true nếu bạn muốn robot có thể đi qua các vùng chưa biết)
+ 
+  visualize_potential: false    # Hiển thị tiềm năng (cần thiết nếu bạn muốn debug bằng Rviz)
+  orientation_mode: 0          # 0: None, 1: Forward, 2: Interpolate
+  use_grid_path: false          # Tạo đường đi dựa trên lưới
+  use_quadratic : True
+  # Các tham số chi tiết cho thuật toán A*
+  max_planning_distance: 10.0  # Khoảng cách tối đa để lập kế hoạch (mét)
+  cost_factor: 1.0             # Hệ số chi phí (ảnh hưởng đến việc tránh các ô có chi phí cao hơn)
+  publish_potential: false      # Xuất bản các tiềm năng, giúp debug trên Rviz
+  potential_scale: 0.5         # Tăng giảm độ hiển thị của tiềm năng trong Rviz
+  
+  # Tùy chỉnh chi tiết cho phép lập kế hoạch lại hoặc tránh chướng ngại vật
+  planner_patience: 5.0        # Thời gian chờ trước khi hủy và thử lại lập kế hoạch
+ 
+  lethal_cost: 253             # Giá trị chi phí của ô gây tử vong (253-255 thường là giá trị tử vong trong costmap)
+  neutral_cost: 50             # Giá trị chi phí trung lập, các ô không có vật cản
+  planner_frequency: 2.0

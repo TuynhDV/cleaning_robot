@@ -1,0 +1,24 @@
+<launch>
+				<!--  ************** Odometry ***************  -->
+
+	<node pkg="tf" type="static_transform_publisher" name="base_f_to_laser" 
+    args="0.115 0.0 0.1 0.0 0.0 0.0 /base_link /laser 30" />
+	<node name="odom_controller" pkg="odom" type="odom_controller" output="screen">
+	<param name="initpose_file_path" value="/home/cleaning_robot/cleaning_ws/src/odom/depends/init_pose.json" />
+			<param name="publish_tf" value="true" />
+		<param name="robot_width" value="0.26" />
+    		<param name="publish_rate" value="20.0" />
+    		<param name="GEAR_RATIO" value="1.05" />
+			<param name="print_data" value="false" />
+			<param name="print_yaw" value="false" />
+			<param name="use_mpu" value="false" />
+    		<param name="bias" value="-0.01" />
+    		<param name="p_rot" value="0.0" />
+    		<param name="d_rot" value="0.0" />
+			<param name="arduino" value="/dev/arduino" />
+			<param name="port" value="57600" />
+	</node>	 
+				<!--  ************** Sensors ***************  -->
+	 <include file="/home/cleaning_robot/cleaning_ws/src/rplidar_ros/launch/rplidar_a1.launch"/>
+	<!-- node name="rviz" pkg="rviz" type="rviz" args="-d $(find odom_description)/urdf.rviz" required="true" / -->
+</launch>
